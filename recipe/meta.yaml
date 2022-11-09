@@ -37,12 +37,17 @@ test:
     - test -f $PREFIX/lib/libpopt.dylib  # [osx]
 
 about:
-  home: http://rpm5.org/
+  home: https://github.com/rpm-software-management/popt
   license: MIT
   license_file: COPYING
+  license_family: MIT
+  license_url: https://github.com/rpm-software-management/popt/blob/main/COPYING
   summary: 'Popt is a C library for parsing command line parameters.'
 
 extra:
+  skip-linter:
+    - missing_doc_url
+    - missing_doc_source_url
   recipe-maintainers:
     - notestaff
     - sodre
