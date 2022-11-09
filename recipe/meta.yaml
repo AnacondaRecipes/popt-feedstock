@@ -38,6 +38,8 @@ test:
 
 about:
   home: https://github.com/rpm-software-management/popt
+  description: This is the popt(3) command line option parsing library
+  dev_url: https://github.com/rpm-software-management/popt
   license: MIT
   license_file: COPYING
   license_family: MIT
@@ -45,9 +47,11 @@ about:
   summary: 'Popt is a C library for parsing command line parameters.'
 
 extra:
-  skip-linter:
+  skip-lints:
+    - invalid_url
     - missing_doc_url
     - missing_doc_source_url
+    - patch_must_be_in_build
   recipe-maintainers:
     - notestaff
     - sodre
