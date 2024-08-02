@@ -1,9 +1,10 @@
 #!/bin/sh
-# Get an updated config.sub and config.guess
-cp $BUILD_PREFIX/share/gnuconfig/config.* .
 
 set -e -o pipefail
 
+#./autogen.sh will run configure unless you tell it not to.
+export NOCONFIGURE=1
+./autogen.sh
 ./configure --prefix=$PREFIX
 make
 if [[ "${CONDA_BUILD_CROSS_COMPILATION}" != "1" ]]; then
