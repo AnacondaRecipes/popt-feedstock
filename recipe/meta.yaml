@@ -1,33 +1,36 @@
 {% set name = "popt" %}
-{% set version = "1.16" %}
+{% set version = "1.19" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  - url: ftp://anduin.linuxfromscratch.org/BLFS/{{ name }}/{{ name }}-{{ version }}.tar.gz
-    sha256: e728ed296fe9f069a0e005003c3d6b2dde3d9cad453422a10d6558616d304cc8
+  - url: http://ftp.rpm.org/{{ name }}/releases/{{ name }}-1.x/{{ name }}-{{ version }}.tar.gz
+    sha256: c25a4838fc8e4c1c8aacb8bd620edb3084a3d63bf8987fdad3ca2758c63240f9
     patches:
-      - 0001-remove-tests-58-and-59.patch  # [osx]
       - 0002-added-sanity-autotest.patch
 
 build:
-  number: 2002
+  number: 0
   skip: True  # [win]
   run_exports:
     - {{ pin_subpackage(name, max_pin='x') }}
 
-
 requirements:
   build:
-    - gnuconfig  # [unix]
+    - automake  # [unix]
+    - autoconf  # [unix]
+    - libtool   # [unix]
     - {{ compiler('c') }}
-    - libiconv
     - perl
     - make
+    - gettext
+    - patch
+  host:
+    - libiconv 1.16
   run:
-    - libiconv
+    - libiconv # bounds through run_exports
 
 test:
   commands:
@@ -37,10 +40,13 @@ test:
     - test -f $PREFIX/lib/libpopt.dylib  # [osx]
 
 about:
-  home: http://rpm5.org/
+  home: https://rpm.org/
   license: MIT
+  license_family: MIT
   license_file: COPYING
-  summary: 'Popt is a C library for parsing command line parameters.'
+  summary: Popt is a C library for parsing command line parameters.
+  dev_url: https://github.com/rpm-software-management/popt
+  doc_url: https://github.com/rpm-software-management/popt/blob/master/README
 
 extra:
   recipe-maintainers:
