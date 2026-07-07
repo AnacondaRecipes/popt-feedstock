@@ -1,0 +1,8 @@
+anaconda_config_version: 1
+upstream_sources:
+  - github:
+      identifier: rpm-software-management/popt
+      use_max_tag: true
+      include_regex: ^popt-\d+(?:\.\d+)+-release$
+      from_pattern: ^popt-(\d+(?:\.\d+)+)-release$
+      to_pattern: \1
